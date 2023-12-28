@@ -1,0 +1,43 @@
+footer {
+	width: 100%;
+	background-color: #79CAC7;
+	border-top: 1px solid #d9d9d9;
+	}
+
+#footer_wrap {
+	max-width: 1200px;
+	margin: 0 auto;	
+	height: 150px;
+	
+	}
+	
+#footer_wrap .office_info {
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	color: #f2f2f2;
+	font-size: .9em;
+	}
+	
+
+#footer_wrap .menu {
+	}
+
+#footer_wrap .menu ul {
+	display:flex; 
+	justify-content:center;
+	}
+
+#footer_wrap .menu ul li {
+	margin-right: 5px;
+	margin-left: 5px;
+	color: #f2f2f2;
+	font-size: .9em;
+	}
+
+#footer_wrap .menu ul li:hover{
+	color: yellow;
+	font-weight:bold;
+}
+
+	

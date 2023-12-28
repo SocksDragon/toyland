@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+section {
+	margin: 30px 0;
+	}
+
+#section_wrap {
+	width: 1200px;
+	margin: 0 auto;
+	}
+
+#section_wrap .word {
+	width: 1024px;
+	margin: 0 auto;
+	text-align: center;
+	}
+	
+#section_wrap .modify_toy_form {
+	width: 1024px;
+	margin: 0 auto;
+	text-align: center;
+	}
+
+#section_wrap .modify_toy_form input {
+	width: 300px;
+	margin: 3px;
+	}
+
+#section_wrap .modify_toy_form select {
+	width: 300px;
+	margin: 3px;
+	}
+
+#section_wrap .modify_toy_form input[type='button'],
+#section_wrap .modify_toy_form input[type='reset'] {
+	width: 145px;
+	}
+	
+#section_wrap .modify_toy_form textarea[name='mt_detail']{
+	width: 300px;
+	height: 200px;
+	border-radius: 10px;
+	}
+
+#section_wrap .modify_toy_form textarea[name='mt_detail']::placeholder{
+	padding:10px 10px 
+ }

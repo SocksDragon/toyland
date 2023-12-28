@@ -1,0 +1,106 @@
+section {
+	margin: 30px 0;
+	}
+
+#section_wrap {
+	width: 1200px;
+	margin: 0 auto;
+	}
+
+#section_wrap .word {
+	width: 1024px;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+	}
+
+#section_wrap .word .btn_add_mall{
+  	position: absolute;
+	top: -90%;
+	right: 0%;
+	width: 120px;
+    margin: 10px 2px;
+    padding: 5px 0;
+    text-align: center;
+    border: 1px solid #adadad;
+    border-radius: 5px;
+    color: #2e2e2e;
+    background-color: #f0f0f0;
+    font-weight: bolder;
+}
+#section_wrap .word .btn_add_mall:hover{
+	background-color:#79CAC7;
+	color:#222;
+}
+
+#section_wrap .word .btn_add_rental{
+  	position: absolute;
+	top: -90%;
+	right: 0%;
+	width: 60px;
+    margin: 10px 2px;
+    padding: 5px 0;
+    text-align: center;
+    border: 1px solid #adadad;
+    border-radius: 5px;
+    color: #2e2e2e;
+    background-color: #f0f0f0;
+    font-weight: bolder;
+}
+
+#section_wrap .word .btn_add_rental:hover{
+	background-color:#79CAC7;
+	color:#222;
+}
+
+
+#section_wrap .rental_toy_list,
+#section_wrap .mall_toy_list{
+	width: 1024px;
+	margin: 0 auto;
+	}
+
+#section_wrap .rental_toy_list table,
+#section_wrap .mall_toy_list table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: .9em;
+	}
+
+#section_wrap .rental_toy_list table thead tr th,
+#section_wrap .mall_toy_list table thead tr th {
+	border: 1px solid #e1e1e1;
+	padding: 10px 3px;
+	text-align: center;
+	color: #fff;
+	background-color: #a5a5a5;
+	}
+
+#section_wrap .rental_toy_list table tbody tr:nth-child(2n-1),
+#section_wrap .mall_toy_list table tbody tr:nth-child(2n-1) {
+	background-color: #f3f3f3;
+}
+
+#section_wrap .rental_toy_list table tbody tr td,
+#section_wrap .mall_toy_list table tbody tr td {
+	border: 1px solid #e1e1e1;
+	padding: 10px 3px;
+	text-align: center;
+	}
+	
+#section_wrap .rental_toy_list table tbody tr td img{
+	height:100px;
+	width: 100px;
+}
+
+#section_wrap .rental_toy_list table tbody tr td a{
+	border:1px solid #adadad;
+	border-radius: 5px;
+	margin: 5px 0;
+    padding: 3px 5px;
+}
+
+#section_wrap .rental_toy_list table tbody tr td a:hover{
+	background-color:#79CAC7;
+	color:#222;
+}

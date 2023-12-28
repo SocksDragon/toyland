@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.toy">
+
+	<select id="mallToyListAll" resultType="mallToyVo">
+        SELECT * FROM tbl_mall_toy ORDER BY mt_no DESC    
+	</select>
+	
+	<select id="mallToyListType" resultType="mallToyVo" parameterType="String">
+       	SELECT * FROM tbl_mall_toy
+        	WHERE mt_type = #{mt_type} 
+    	 ORDER BY mt_no DESC
+ 	</select>
+	
+	
+	<select id="selectToys" resultType="mallToyVo" parameterType="mallToyVo">
+         SELECT * FROM tbl_mall_toy 
+         <if test="mt_name != null">
+        	WHERE mt_name LIKE CONCAT('%', #{mt_name}, '%') 
+        	or mt_publisher LIKE CONCAT('%', #{mt_name}, '%')
+    	 </if>
+    	 ORDER BY mt_name
+ 	</select>	
+ 	
+	<select id="rentalToyListAll" resultType="rentalToyVo">
+        SELECT * FROM tbl_rental_toy ORDER BY rt_no DESC            
+	</select>
+	
+	<insert id="cartSessionInsert" parameterType="java.util.List">
+		INSERT INTO tbl_cart_toy (mt_no, u_m_no, cart_qty)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.mt_no}, #{item.u_m_no}, #{item.cart_qty})
+		</foreach>
+		ON DUPLICATE KEY UPDATE cart_qty = IF(VALUES(cart_qty) > cart_qty, VALUES(cart_qty), cart_qty)
+	</insert>
+	
+	<insert id="cartInsertLogin" parameterType="cartToyVo">
+		INSERT INTO tbl_cart_toy (mt_no, u_m_no, cart_qty) 
+		VALUES (#{mt_no}, #{u_m_no}, #{cart_qty})
+	</insert>
+	
+	<select id="cartSelectUser" resultType="cartToyVo" parameterType="int">
+		SELECT * FROM tbl_mall_toy A
+		JOIN tbl_cart_toy B
+		ON A.mt_no = B.mt_no
+		WHERE B.u_m_no=#{user_no}	
+	</select>
+			
+	<update id="updateQty" parameterType="cartToyVo">
+		UPDATE tbl_cart_toy SET cart_qty=#{cart_qty}
+		WHERE mt_no=#{mt_no} AND u_m_no=#{u_m_no}
+	</update>
+	
+	<delete id="removeCart" parameterType="cartToyVo">
+		DELETE FROM tbl_cart_toy
+		WHERE mt_no=#{mt_no} AND u_m_no=#{u_m_no}
+	</delete>
+
+	<select id="orderList" resultType="cartToyVo" parameterType="java.util.List">
+		SELECT * FROM tbl_cart_toy C
+		JOIN tbl_mall_toy M ON C.mt_no=M.mt_no
+		JOIN tbl_user_member U ON C.u_m_no=U.u_m_no
+	    WHERE 
+	    <foreach collection="list" item="item" open="(" separator=") OR (" close=")">
+	    	C.mt_no=#{item.mt_no} AND C.u_m_no=#{item.u_m_no}
+	    </foreach>
+	</select>
+	
+	<insert id="purchase" parameterType="orderVo" useGeneratedKeys="true" keyProperty="order_no">
+		INSERT INTO tbl_order (order_status, order_date, u_m_no, delivery_name, delivery_address, delivery_phone, order_comment, ord_bank)
+		VALUES ('입금대기', now(), #{u_m_no}, #{delivery_name}, #{delivery_address}, #{delivery_phone}, #{order_comment}, #{ord_bank})
+	</insert>
+		
+	<insert id="orderDetailInsert" parameterType="java.util.List">
+		INSERT INTO tbl_order_detail (order_no, mt_no, order_qty, total_price)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.order_no}, #{item.mt_no}, #{item.order_qty}, (
+			SELECT #{item.order_qty} * A.mt_price
+			FROM tbl_mall_toy A
+			WHERE A.mt_no = #{item.mt_no}
+		))
+		</foreach>
+	</insert>
+	
+	<update id="inventoryUpdate" parameterType="orderDetailVo">
+        UPDATE tbl_mall_toy 
+        SET mt_quantity = mt_quantity - #{order_qty}
+        WHERE mt_no = #{mt_no}
+	</update>
+	
+		
+	<delete id="cartDelete" parameterType="java.util.List">
+		DELETE FROM tbl_cart_toy 
+		WHERE 
+		<foreach collection="list" item="item" open="(" separator=") OR (" close=")">
+			mt_no=#{item.mt_no} AND u_m_no=#{item.u_m_no}
+		</foreach>
+	</delete>
+	
+	<select id="orderUserSelect" resultType="orderVo" parameterType="int">
+		 SELECT A.order_no, tbl_order.order_status, tbl_order.order_date, A.total_price, B.mt_name, A.cnt, tbl_order.ord_bank
+			   FROM
+			       (
+			           SELECT
+			               order_no,
+			               SUM(total_price) AS total_price,
+			               MIN(mt_no) AS mt_no,
+			               Count(mt_no) AS cnt
+			           FROM
+			               tbl_order_detail
+			           WHERE
+			               order_no IN (SELECT order_no FROM tbl_order WHERE u_m_no = #{u_m_no})
+			           GROUP BY order_no
+			       ) A
+	    JOIN tbl_mall_toy B ON A.mt_no = B.mt_no
+	    JOIN tbl_order ON A.order_no = tbl_order.order_no
+	    ORDER BY tbl_order.order_date DESC;
+	</select>
+	
+	<select id="orderDetail" resultType="orderVo" parameterType="int">
+		SELECT * FROM tbl_order_detail OD
+		JOIN tbl_order O ON OD.order_no = O.order_no
+		JOIN tbl_mall_toy MT on MT.mt_no = OD.mt_no
+		JOIN tbl_user_member UM on UM.u_m_no = O.u_m_no
+		WHERE OD.order_no = #{order_no}
+	</select>
+	
+	<delete id="removePurchase" parameterType="orderVo">
+		DELETE FROM tbl_order
+		WHERE order_no = #{order_no} AND u_m_no=#{u_m_no}
+	</delete>
+	
+	<select id="allToyOrder" resultType="orderVo" parameterType="int">
+		SELECT  UM.u_m_no, O.order_no, O.order_date, O.ord_bank, O.order_status, UM.u_m_name, UM.u_m_phone, SUM(OD.total_price) AS total_price 
+		FROM tbl_order_detail OD
+		JOIN tbl_order O ON OD.order_no = O.order_no
+		JOIN tbl_mall_toy MT ON MT.mt_no = OD.mt_no
+		JOIN tbl_user_member UM ON UM.u_m_no = O.u_m_no
+		GROUP BY O.order_no;
+	</select>
+	
+	<update id="setAdminApproval" parameterType="int">
+        UPDATE tbl_order
+        SET order_status = '입금완료'
+        WHERE order_no = #{order_no}
+	</update>
+	
+	<select id="allToyOrderDetail" resultType="orderVo" parameterType="int">
+		SELECT * FROM tbl_order_detail OD
+		JOIN tbl_order O ON OD.order_no = O.order_no
+		JOIN tbl_mall_toy MT on MT.mt_no = OD.mt_no
+		JOIN tbl_user_member UM on UM.u_m_no = O.u_m_no
+		WHERE OD.order_no = #{order_no}
+	</select>
+	
+	
+	
+	
+	
+</mapper>

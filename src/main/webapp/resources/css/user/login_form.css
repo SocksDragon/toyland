@@ -1,0 +1,60 @@
+section {
+	margin: 30px 0;
+	}
+
+#section_wrap {
+	width: 1200px;
+	margin: 0 auto;
+	}
+
+#section_wrap .word {
+	width: 1024px;
+	margin: 10px auto;
+	text-align: center;
+	}
+	
+#section_wrap .login_form {
+	width: 1024px;
+	margin: 0 auto;
+	text-align: center;
+	}
+#section_wrap .login_form form{
+	display:flex;
+    justify-content: center;
+	}
+
+#section_wrap .login_form input {
+	width: 300px;
+	margin: 3px;
+	}
+	
+#section_wrap .login_form login_btn{
+	width: 300px;
+	}
+	
+#section_wrap .login_form button[type='button'] {
+	width: 150px;
+	height: 80px;
+	margin: 3px;
+	border: 1px solid #adadad;
+    border-radius: 5px;
+	}
+	
+#section_wrap .find_password_create_account {
+	width: 1024px;
+	margin: 50px auto;
+	text-align: center;
+	}
+
+#section_wrap .find_password_create_account a {
+	display: inline-block;
+	width: 200px;
+	padding: 10px 0;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	}
+	
+#section_wrap .find_password_create_account a:hover{
+	font-weight: bold;
+	color:#79CAC7;
+}

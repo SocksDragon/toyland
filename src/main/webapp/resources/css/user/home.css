@@ -1,0 +1,132 @@
+section {
+	margin: 30px 0;
+	}
+
+#banner_wrap {
+	width: 1200px;
+	margin: 0 auto;
+	}
+	
+#banner_wrap .banners {
+	max-width: 1200px;
+	margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+	}
+#banner_wrap .banners img {
+     width: 1000px;
+     height: 500px;
+     cursor: pointer;
+     margin: 0 10px 30px;
+     display: none;
+     
+}
+
+#banner_wrap .banners img.active {
+     display: block;
+}
+
+#banner_wrap .banners i{
+	font-size: 100px;
+    cursor: pointer;
+}
+
+#main_wrap{
+	max-width:1200px;
+	margin: 0 auto;
+}
+#main_wrap h2{
+	border-bottom: 3px solid #241d1e;
+	margin-bottom: 50px;
+	position: relative;
+}
+
+#main_wrap h2 .btn_allView{
+  	position: absolute;
+	top: 0%;
+	right: 10px;
+    padding: 5px 25px 4px 15px;
+	font-size: 14px;
+	color: #222;
+	background: transparent url(../../img/user/arrowR_8x13.png) calc(100% - 7px)
+	    center/8px 13px scroll no-repeat;
+	border: 1px solid #e2e2e2;
+	border-radius: 15px;
+	box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+#main_wrap h2 .btn_allView:hover{
+	background: transparent url(../../img/user/arrowR_8x13.png) calc(100% - 7px)
+	    center/8px 13px scroll no-repeat;
+	background-color:#79CAC7;
+	color:#222;
+}
+
+#main_wrap .mallToyList .mallList,
+#main_wrap .rentalToyList .rentalList { 
+	display:grid; 
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	margin: 0 auto 30px;
+}
+	
+#main_wrap .mallList > li .originBox, 
+#main_wrap .rentalList > li .originBox{
+    display: flex;
+    flex-direction:column;
+    align-items :center;  
+    height: 200px; 
+}
+
+#main_wrap .mallList > li .originBox .photo,
+#main_wrap .rentalList > li .originBox .photo {
+    width: 100px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main_wrap .mallList > li .originBox .photo img,
+#main_wrap .rentalList > li .originBox .photo img {
+    display:inline-block;
+}	
+
+#main_wrap .mallList > li .originBox .info,
+#main_wrap .rentalList > li .originBox .info {
+	text-align: center;
+	font-size:16px;
+}
+
+#main_wrap .notice_list{
+	width: 1024px;
+	margin: 0 auto;
+	}
+
+#main_wrap .notice_list table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: .9em;
+	}
+
+#main_wrap .notice_list table thead tr th {
+	border: 1px solid #e1e1e1;
+	padding: 10px 3px;
+	text-align: center;
+	color: #fff;
+	background-color: #a5a5a5;
+	}
+
+#main_wrap .notice_list table tbody tr:nth-child(2n-1) {
+	background-color: #f3f3f3;
+}
+
+#main_wrap .notice_list table tbody tr td{
+	border: 1px solid #e1e1e1;
+	padding: 10px 3px;
+	text-align: center;
+	}
+  
+  

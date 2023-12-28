@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.rental.toy.admin.member.AdminMemberVo"  alias="adminMemberVo" />
+		<typeAlias type="com.rental.toy.user.member.UserMemberVo"  alias="userMemberVo" />
+		<typeAlias type="com.rental.toy.mall.MallToyVo"  alias="mallToyVo" />
+		<typeAlias type="com.rental.toy.mall.RentalToyVo"  alias="rentalToyVo" />
+		<typeAlias type="com.rental.toy.mall.CartToyVo"  alias="cartToyVo" />
+		<typeAlias type="com.rental.toy.mall.OrderVo"  alias="orderVo" />
+		<typeAlias type="com.rental.toy.mall.OrderDetailVo"  alias="orderDetailVo" />
+
+
+
+		
+	
+		
+	</typeAliases>
+</configuration>

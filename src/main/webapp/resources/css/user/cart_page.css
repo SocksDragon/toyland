@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#section_wrap { 
+	max-width:1200px; 
+	margin:50px auto; 
+	}
+	
+#section_wrap .word { 
+	text-align:center; 
+	}	
+
+.cartInfo { text-align:center; margin:20px 0; border-collapse:collapse; width:100% }
+.cartInfo col:nth-child(1) { width:50px }
+.cartInfo col:nth-child(2) { width:100px }
+.cartInfo col:nth-child(3) { width:auto }
+.cartInfo col:nth-child(4) { width:200px }
+.cartInfo col:nth-child(5) { width:150px }
+.cartInfo col:nth-child(6) { width:200px }
+.cartInfo col:nth-child(7) { width:80px }
+.cartInfo th,
+.cartInfo td { border:1px solid #000 }
+.cartInfo thead th { padding:15px 0 }
+.cartInfo tbody td { text-align:center }
+.cartInfo tfoot td { padding:10px 0; text-align:center; font-size:30px;  }
+.cartInfo tbody button { padding:5px 10px; background:#555; color:#fff; cursor: pointer}
+.cartInfo tbody input { width:30px; text-align:center; height:30px; margin:3px auto }
+.order { text-align:center; margin:20px 0 50px }
+.order button, .order a { padding:10px 20px; border-radius:10px; font-size:20px; background:#555; color:#fff; cursor: pointer}
+     
+.list_empty{
+	text-align:center;
+}
+	
